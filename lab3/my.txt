@@ -1,0 +1,1 @@
+plot 'train_data.tsv' using 1:2 
