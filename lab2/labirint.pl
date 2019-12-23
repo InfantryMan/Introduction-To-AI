@@ -67,14 +67,16 @@ bubble_sort(List, SortedList):-
 path1(From, To, Way, [H | T], Length):- prohod(From, X, Length),
                                      not( member(X, Way) ),
                                      X = To,
-
+                                    
+                                     writef('1. From = %w, Way = %w\n', [From, Way]),
                                      H = From,
                                      T = [X | []].
 
 path1(From, To, Way, [H | T], SumL):- prohod(From, X, Length),
                                      not( member(X, Way) ),
                                      X \= To,
-					
+
+                                     writef('2. From = %w, Way = %w\n', [From, Way]),
                                      H = From,
                                      path1(X, To, [From | Way], T, SumL1),
 				     SumL is SumL1 + Length.

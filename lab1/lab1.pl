@@ -105,7 +105,7 @@ prokladki(H, TR):-  prokladka(Code, TR, H1),
                     prokladki(H2, TR),
                     write(Code), tab(3), write(H1), nl.
 
-% Плоская поверхность прижима
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 instr(H, 'plosk_chist'):-   opora_sfer(Code_op, DM),
                             kulachok_rezb(Code_kul, TR_kul, DM, H_kul),
                             zajim(Code_zaj, TR_zaj, TR_kul, H_zaj),
@@ -129,7 +129,7 @@ instr(H, 'plosk_chern'):-   opora_nasechka(Code_op, DM),
                             write_instr('plosk_chern', Code_op, false, Code_kul, Code_zaj).
 
 
-% Заготовки с цилиндрической наружной поверхностью
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 instr(H, 'cyl_vert', D):-   kulachok_prizm_vert(Code_kul, TR_kul, H_kul, D),
                             zajim(Code_zaj, TR_zaj, TR_kul, H_zaj),
                             H_pr is H-(H_kul+H_zaj+30),
@@ -150,7 +150,7 @@ instr(H, 'cyl_gor', D):-    kulachok_prizm_gor(Code_kul, TR_kul, H_kul, D),
                             countHead(List),
                             write_instr('cyl_gor', false, false, Code_kul, Code_zaj).
 
-% Заготовки со специальными технологическими отверстиями
+% пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 instr(H, 'perfor', D):-     shtir(Code_sh, DM, D),
                             kulachok_rezb(Code_kul, TR_kul, DM, H_kul),
                             zajim(Code_zaj, TR_zaj, TR_kul, H_zaj),
