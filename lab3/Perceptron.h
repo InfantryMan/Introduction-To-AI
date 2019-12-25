@@ -7,6 +7,8 @@ typedef std::vector<double> dvector;
 typedef std::pair<dvector, double> train_pair;
 typedef std::vector<train_pair> train_pairs;
 
+float pause = 1.0;
+
 class Perceptron {
 
 public:
@@ -79,13 +81,13 @@ void Perceptron::train(const train_pairs &tps, int epoch_count, int try_limit, F
             fprintf(gnuplotPipe, "unset multiplot\nset multiplot\n");
             plot_dots(tps, gnuplotPipe);
             fprintf(gnuplotPipe, "plot %lf*x+%lf notitle\n", k, b);
-            fprintf(gnuplotPipe, "pause 0.1\n");
+            fprintf(gnuplotPipe, "pause %f\n", pause);
             fflush(gnuplotPipe);
 
             while (try_count < try_limit) {
                 double u = 0;
                 u += W[0];
-                for (int i = 1; i < tp.first.size(); i++) {
+                for (int i = 1; i < tp.first.size() + 1; i++) {
                     u += W[i] * tp.first[i - 1];
                 }
                 double y = activ_func(u);
@@ -95,10 +97,9 @@ void Perceptron::train(const train_pairs &tps, int epoch_count, int try_limit, F
                     break; 
                 }
                 W[0] += tp.second - y;
-                for (int i = 1; i <= tp.first.size(); i++) {
-                    // W[i] += tp.first[i - 1]*(tp.second - y);
-                    W[i] += (tp.second - y);
-
+                for (int i = 1; i < tp.first.size() + 1; i++) {
+                    W[i] += tp.first[i - 1]*(tp.second - y);
+                    // W[i] += (tp.second - y);
                 }
                 k = - (W[1] / W[2]), b = - (W[0] / W[2]);
                 // fprintf(gnuplotPipe, "unset multiplot\nset multiplot\n");
@@ -112,7 +113,7 @@ void Perceptron::train(const train_pairs &tps, int epoch_count, int try_limit, F
             fprintf(gnuplotPipe, "unset multiplot\nset multiplot\n");
             plot_dots(tps, gnuplotPipe);
             fprintf(gnuplotPipe, "plot %lf*x+%lf notitle\n", k, b);
-            fprintf(gnuplotPipe, "pause 0.1\n");
+            fprintf(gnuplotPipe, "pause %f\n", pause);
             fflush(gnuplotPipe);
         }
     }

@@ -4,14 +4,7 @@
 
 #include "Perceptron.h"
 
-std::string train_data_filename = "train_data.tsv";
-
-/*
-    Вариант 1-5.
-    Разработать, используя язык C/C++, программу, моделирующую поведение искусственного трехвходового нейрона 
-    указанного преподавателем типа и обеспечивающую его обучение для решения задачи классификации. 
-    Тип нейрона - перцептрон.
-*/
+std::string train_data_filename = "train_data_2.tsv";
 
 int main() {
     int try_limit;
@@ -46,7 +39,6 @@ int main() {
     fprintf(gnuplotPipe, "set yrange [-3:9]\n");
     
     Perceptron perceptron(2);
-    print_dvector(perceptron.W);
 
     perceptron.train(tps, epoch_count, try_limit, gnuplotPipe);
 

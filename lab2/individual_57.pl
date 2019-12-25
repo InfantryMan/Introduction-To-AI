@@ -135,7 +135,7 @@ path(From, To, Way, MoveCount, [H | T], OS):-
 											Sum is (WaySize + PSize),
 											% Sum = 6,
 											% MoveCount = 1,
-											Sum = 64,
+											Sum = 57,
 											MoveCount = 14,
 											% write(OS, 'URAA\n'),
 											% writef('Way = %w \n P = %w \n', [Way, P]),
@@ -166,7 +166,7 @@ path(From, To, Way, MoveCount, [H | T], OS):-
 											Sum is (WaySize + PSize),
 											% Sum < 6,
 											% MoveCount < 1,
-											Sum < 64,
+											Sum < 57,
 											MoveCount < 14,
 											% write(OS, '2.1. Way = '), write(OS, Way), write(OS, ' '), nl(OS),
 											H = From,
@@ -174,16 +174,9 @@ path(From, To, Way, MoveCount, [H | T], OS):-
 											% write(OS, '2.1. NewWay = '), write(OS, NewWay), write(OS, ' '), nl(OS),
 											MC is MoveCount + 1,
 											path(NewPos, To, NewWay, MC, T, OS). 
-											
-path1_call(From, To, Path):- open('output.txt', write, OS),
-							(	path(From, To, [From], 0, Path, OS),
-								false
-								;
-								close(OS)
-							).
 
 path_call(From, To, Path):- 	path(From, To, [From], 0, Path, OS),
-								open('output1.txt', append, OS),
+								open('result.txt', append, OS),
 								(	
 									write(OS, Path),
 									nl(OS),
@@ -193,18 +186,13 @@ path_call(From, To, Path):- 	path(From, To, [From], 0, Path, OS),
 								).
 
 path_call_all(From, To, Path):- findall(P, path(From, To, [From], 0, P, OS), Path),
-								open('output.txt', append, OS),
+								open('result_all.txt', append, OS),
 								(	
 									write(OS, Path),
 									false
 									;
 									close(OS)
 								).
-
-
-	
-
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    % Help-functions
